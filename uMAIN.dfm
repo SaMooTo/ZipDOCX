@@ -1,0 +1,61 @@
+object Form1: TForm1
+  Left = 0
+  Top = 0
+  AutoSize = True
+  Caption = 'but'
+  ClientHeight = 441
+  ClientWidth = 625
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -12
+  Font.Name = 'Segoe UI'
+  Font.Style = []
+  TextHeight = 15
+  object Panel1: TPanel
+    Left = 0
+    Top = 0
+    Width = 625
+    Height = 441
+    BevelOuter = bvNone
+    TabOrder = 0
+    object PATH: TEdit
+      Left = 168
+      Top = 191
+      Width = 257
+      Height = 23
+      TabOrder = 0
+    end
+    object UNZIP: TButton
+      Left = 168
+      Top = 335
+      Width = 75
+      Height = 25
+      Caption = #1047#1072#1096#1080#1092#1088#1086#1074#1072#1090#1100
+      TabOrder = 1
+      OnClick = UNZIPClick
+    end
+    object CHOOSE: TButton
+      Left = 456
+      Top = 191
+      Width = 75
+      Height = 25
+      Caption = #1042#1099#1073#1088#1072#1090#1100
+      TabOrder = 2
+      OnClick = CHOOSEClick
+    end
+    object ZIP: TButton
+      Left = 350
+      Top = 335
+      Width = 75
+      Height = 25
+      Caption = #1056#1072#1089#1096#1080#1092#1088#1086#1074#1072#1090#1100
+      TabOrder = 3
+      OnClick = ZIPClick
+    end
+  end
+  object OpenDialogDOCX: TOpenDialog
+    Left = 8
+    Top = 400
+  end
+end
