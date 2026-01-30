@@ -1,4 +1,5 @@
-.\Win64x\Debug\unzipDOCX.o: C:\Users\Gustov\Desktop\Prog\unzipDOCXPCH1.h \
+.\Win64x\Debug\unzipDOCX.o: \
+  C:\Users\Gustov\Desktop\ReadyProds\Zip\unzipDOCXPCH1.h \
   c:\program\ files\ (x86)\embarcadero\studio\23.0\include\windows\vcl\vcl.h \
   c:\program\ files\ (x86)\embarcadero\studio\23.0\include\windows\vcl\basepch0.h \
   c:\program\ files\ (x86)\embarcadero\studio\23.0\include\windows\rtl\System.hpp \

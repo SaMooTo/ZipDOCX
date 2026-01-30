@@ -27,11 +27,11 @@ object Form1: TForm1
       TabOrder = 0
     end
     object UNZIP: TButton
-      Left = 168
-      Top = 335
-      Width = 75
+      Left = 320
+      Top = 304
+      Width = 105
       Height = 25
-      Caption = #1047#1072#1096#1080#1092#1088#1086#1074#1072#1090#1100
+      Caption = #1056#1072#1089#1096#1080#1092#1088#1086#1074#1072#1090#1100
       TabOrder = 1
       OnClick = UNZIPClick
     end
@@ -45,11 +45,11 @@ object Form1: TForm1
       OnClick = CHOOSEClick
     end
     object ZIP: TButton
-      Left = 350
-      Top = 335
-      Width = 75
+      Left = 168
+      Top = 304
+      Width = 105
       Height = 25
-      Caption = #1056#1072#1089#1096#1080#1092#1088#1086#1074#1072#1090#1100
+      Caption = #1047#1072#1096#1080#1092#1088#1086#1074#1072#1090#1100
       TabOrder = 3
       OnClick = ZIPClick
     end

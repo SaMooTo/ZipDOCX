@@ -1,4 +1,5 @@
-.\Win64x\Debug\uMAIN.o: C:\Users\Gustov\Desktop\Prog\unzipDOCXPCH1.h \
+.\Win64x\Debug\uMAIN.o: \
+  C:\Users\Gustov\Desktop\ReadyProds\Zip\unzipDOCXPCH1.h \
   c:\program\ files\ (x86)\embarcadero\studio\23.0\include\windows\vcl\vcl.h \
   c:\program\ files\ (x86)\embarcadero\studio\23.0\include\windows\vcl\basepch0.h \
   c:\program\ files\ (x86)\embarcadero\studio\23.0\include\windows\rtl\System.hpp \
@@ -969,7 +970,7 @@
   c:\program\ files\ (x86)\embarcadero\studio\23.0\include\windows\vcl\Vcl.ListActns.hpp \
   c:\program\ files\ (x86)\embarcadero\studio\23.0\include\x86_64-w64-mingw32\tchar.h \
   c:\program\ files\ (x86)\embarcadero\studio\23.0\include\x86_64-w64-mingw32\sec_api\tchar_s.h \
-  uMAIN.cpp C:\Users\Gustov\Desktop\Prog\uMAIN.h \
+  uMAIN.cpp C:\Users\Gustov\Desktop\ReadyProds\Zip\uMAIN.h \
   c:\program\ files\ (x86)\embarcadero\studio\23.0\include\x86_64-w64-mingw32\c++\v1\filesystem \
   c:\program\ files\ (x86)\embarcadero\studio\23.0\include\x86_64-w64-mingw32\c++\v1\__filesystem\copy_options.h \
   c:\program\ files\ (x86)\embarcadero\studio\23.0\include\x86_64-w64-mingw32\c++\v1\__filesystem\directory_entry.h \

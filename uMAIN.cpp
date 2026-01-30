@@ -74,7 +74,7 @@ void __fastcall TForm1::CHOOSEClick(TObject *Sender)
 //---------------------------------------------------------------------------
 void __fastcall TForm1::UNZIPClick(TObject *Sender)
 {
-	File = AnsiString(PATH->Text).c_str();
+    File = AnsiString(PATH->Text).c_str();
 	Path = filesystem::path(File).parent_path().u8string();
 	zipPath = filesystem::current_path().u8string();
 	unzipDOCX(File);
@@ -82,29 +82,7 @@ void __fastcall TForm1::UNZIPClick(TObject *Sender)
 	for (filesystem::path file : filesystem::recursive_directory_iterator(Path)) {
 		if (filesystem::is_directory(file)) {} //Тут всё что нужнос делать с папками
 		if (filesystem::is_regular_file(file)) {
-			if (file.extension() != ".png") { //Обработчик txt файлов
-				Crypt_TXT_file(file);
-			}
-		}
-	}
-	system(("cd " + Path +
-			" && " + zipPath + "\\7z " + "a -tzip -mx5 -r0 " + string(&Path[0], &Path[Path.rfind("\\")]) +
-			"\\Shifred.zip * && cd .. && ren Shifred.zip Shifred.docx && rmdir temp /s /q").c_str());
-}
-//---------------------------------------------------------------------------
-
-
-void __fastcall TForm1::ZIPClick(TObject *Sender)
-{
-	File = AnsiString(PATH->Text).c_str();
-	Path = filesystem::path(File).parent_path().u8string();
-	zipPath = filesystem::current_path().u8string();
-	unzipDOCX(File);
-	Path = Path + "\\temp";
-	for (filesystem::path file : filesystem::recursive_directory_iterator(Path)) {
-		if (filesystem::is_directory(file)) {} //Тут всё что нужнос делать с папками
-		if (filesystem::is_regular_file(file)) {
-			if (file.extension() != ".png") { //Обработчик txt файлов
+			if (file.extension() != ".emf") { //Обработчик txt файлов
 				Decrypt_TXT_file(file);
 			}
 		}
@@ -112,6 +90,28 @@ void __fastcall TForm1::ZIPClick(TObject *Sender)
 	system(("cd " + Path +
 			" && " + zipPath + "\\7z " + "a -tzip -mx5 -r0 " + string(&Path[0], &Path[Path.rfind("\\")]) +
 			"\\Deshifred.zip * && cd .. && ren Deshifred.zip Deshifred.docx && rmdir temp /s /q").c_str());
+}
+//---------------------------------------------------------------------------
+
+
+void __fastcall TForm1::ZIPClick(TObject *Sender)
+{
+    File = AnsiString(PATH->Text).c_str();
+	Path = filesystem::path(File).parent_path().u8string();
+	zipPath = filesystem::current_path().u8string();
+	unzipDOCX(File);
+	Path = Path + "\\temp";
+	for (filesystem::path file : filesystem::recursive_directory_iterator(Path)) {
+		if (filesystem::is_directory(file)) {} //Тут всё что нужнос делать с папками
+		if (filesystem::is_regular_file(file)) {
+			if (file.extension() != ".emf") { //Обработчик txt файлов
+				Crypt_TXT_file(file);
+			}
+		}
+	}
+	system(("cd " + Path +
+			" && " + zipPath + "\\7z " + "a -tzip -mx5 -r0 " + string(&Path[0], &Path[Path.rfind("\\")]) +
+			"\\Shifred.zip * && cd .. && ren Shifred.zip Shifred.docx && rmdir temp /s /q").c_str());
 }
 //---------------------------------------------------------------------------
 
