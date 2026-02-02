@@ -1,19 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <BorlandProject>
 	<Transactions>
-    <Transaction>1899.12.30 00:00:00.000.241,=C:\Users\SaMooTo\Documents\Embarcadero\Studio\Projects\Unit1.cpp</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.010,C:\Users\SaMooTo\Documents\Embarcadero\Studio\Projects\Unit1.cpp=C:\Users\SaMooTo\Desktop\Prog\Unit1.cpp</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.711,C:\Users\SaMooTo\Desktop\Prog\Unit1.h=C:\Users\SaMooTo\Desktop\Prog\uMAIN.h</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.030,C:\Users\SaMooTo\Documents\Embarcadero\Studio\Projects\Project2.cbproj=C:\Users\SaMooTo\Desktop\Prog\unzipDOCX.cbproj</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.711,C:\Users\SaMooTo\Desktop\Prog\Unit1.dfm=C:\Users\SaMooTo\Desktop\Prog\uMAIN.dfm</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.010,C:\Users\SaMooTo\Documents\Embarcadero\Studio\Projects\Unit1.dfm=C:\Users\SaMooTo\Desktop\Prog\Unit1.dfm</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.999,C:\Users\SaMooTo\Documents\Embarcadero\Studio\Projects\Project2PCH1.h=C:\Users\SaMooTo\Desktop\Prog\unzipDOCXPCH1.h</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.711,C:\Users\SaMooTo\Desktop\Prog\Unit1.cpp=C:\Users\SaMooTo\Desktop\Prog\uMAIN.cpp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.711,C:\Users\SaMooTo\Desktop\Prog\uMAIN.cpp=C:\Users\SaMooTo\Desktop\Prog\Unit1.cpp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.010,C:\Users\SaMooTo\Desktop\Prog\Unit1.dfm=C:\Users\SaMooTo\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.695,C:\Users\Gustov\Desktop\ReadyProds\Zip\Unit2.h=C:\Users\Gustov\Desktop\ReadyProds\Zip\TestForm\Unit2.h</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.855,=C:\Users\Gustov\Desktop\ReadyProds\Zip\Unit2.cpp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.711,C:\Users\SaMooTo\Desktop\Prog\uMAIN.dfm=C:\Users\SaMooTo\Desktop\Prog\Unit1.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.711,C:\Users\SaMooTo\Desktop\Prog\uMAIN.h=C:\Users\SaMooTo\Desktop\Prog\Unit1.h</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.695,C:\Users\Gustov\Desktop\ReadyProds\Zip\Unit2.cpp=C:\Users\Gustov\Desktop\ReadyProds\Zip\TestForm\Unit2.cpp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.999,C:\Users\SaMooTo\Desktop\Prog\unzipDOCXPCH1.h=C:\Users\SaMooTo\Documents\Embarcadero\Studio\Projects\Project2PCH1.h</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.030,C:\Users\SaMooTo\Desktop\Prog\unzipDOCX.cbproj=C:\Users\SaMooTo\Documents\Embarcadero\Studio\Projects\Project2.cbproj</Transaction>
     <Transaction>1899.12.30 00:00:00.000.911,=C:\Users\SaMooTo\Documents\Embarcadero\Studio\Projects\Project2PCH1.h</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.010,C:\Users\SaMooTo\Documents\Embarcadero\Studio\Projects\Unit1.h=C:\Users\SaMooTo\Desktop\Prog\Unit1.h</Transaction>
-    <Transaction>2026.01.30 16:19:37.855,=C:\Users\Gustov\Desktop\ReadyProds\Zip\Unit2.cpp</Transaction>
-    <Transaction>2026.01.30 16:19:54.695,C:\Users\Gustov\Desktop\ReadyProds\Zip\TestForm\Unit2.cpp=C:\Users\Gustov\Desktop\ReadyProds\Zip\Unit2.cpp</Transaction>
-    <Transaction>2026.01.30 16:19:54.695,C:\Users\Gustov\Desktop\ReadyProds\Zip\TestForm\Unit2.h=C:\Users\Gustov\Desktop\ReadyProds\Zip\Unit2.h</Transaction>
-    <Transaction>2026.01.30 16:19:54.695,C:\Users\Gustov\Desktop\ReadyProds\Zip\TestForm\Unit2.dfm=C:\Users\Gustov\Desktop\ReadyProds\Zip\Unit2.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.010,C:\Users\SaMooTo\Desktop\Prog\Unit1.cpp=C:\Users\SaMooTo\Documents\Embarcadero\Studio\Projects\Unit1.cpp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.695,C:\Users\Gustov\Desktop\ReadyProds\Zip\Unit2.dfm=C:\Users\Gustov\Desktop\ReadyProds\Zip\TestForm\Unit2.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.010,C:\Users\SaMooTo\Desktop\Prog\Unit1.h=C:\Users\SaMooTo\Documents\Embarcadero\Studio\Projects\Unit1.h</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.241,=C:\Users\SaMooTo\Documents\Embarcadero\Studio\Projects\Unit1.cpp</Transaction>
   </Transactions>
 </BorlandProject>

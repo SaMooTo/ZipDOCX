@@ -970,4 +970,7 @@
   c:\program\ files\ (x86)\embarcadero\studio\23.0\include\windows\vcl\Vcl.ListActns.hpp \
   c:\program\ files\ (x86)\embarcadero\studio\23.0\include\x86_64-w64-mingw32\tchar.h \
   c:\program\ files\ (x86)\embarcadero\studio\23.0\include\x86_64-w64-mingw32\sec_api\tchar_s.h \
-  TestForm\Unit2.cpp TestForm\Unit2.h
+  TestForm\Unit2.cpp \
+  c:\program\ files\ (x86)\embarcadero\studio\23.0\include\windows\vcl\jpeg.hpp \
+  c:\program\ files\ (x86)\embarcadero\studio\23.0\include\windows\vcl\Vcl.Imaging.jpeg.hpp \
+  TestForm\Unit2.h
