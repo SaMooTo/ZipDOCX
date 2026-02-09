@@ -12,12 +12,13 @@ using namespace std;
 #pragma package(smart_init)
 #pragma resource "*.dfm"
 TForm1 *Form1;
-filesystem::path File;
+string File;
 string Path;
 string zipPath;
 
 void unzipDOCX() {
-	system(("cd " + Path + " && mkdir temp && cd temp && tar -xf \"" + File.string() + "\"").c_str());
+	Form1->Caption = File.c_str();
+	system(("cd " + Path + " && mkdir temp && cd temp && tar -xf \"" + File + "\"").c_str());
 }
 
 void CesarBytes(vector<char>& data, int Step) {
@@ -93,7 +94,7 @@ void __fastcall TForm1::CHOOSEClick(TObject *Sender)
 void __fastcall TForm1::UNZIPClick(TObject *Sender)
 {
     File = AnsiString(PATH->Text).c_str();
-	Path = File.parent_path().u8string();
+	Path = filesystem::path(File).parent_path().u8string();
 	zipPath = filesystem::current_path().u8string();
 	unzipDOCX();
 	Path = Path + "\\temp";
@@ -108,10 +109,9 @@ void __fastcall TForm1::UNZIPClick(TObject *Sender)
             }
 		}
 	}
-	string FileName = "Deshifred-" + File.filename().string();
 	system(("cd " + Path +
 			" && " + zipPath + "\\7z " + "a -tzip -mx5 -r0 " + string(&Path[0], &Path[Path.rfind("\\")]) +
-			"\\Deshifred.zip * && cd .. && ren Deshifred.zip " + FileName + " && rmdir temp /s /q").c_str());
+			"\\Deshifred.zip * && cd .. && ren Deshifred.zip Deshifred.docx && rmdir temp /s /q").c_str());
 }
 //---------------------------------------------------------------------------
 
@@ -119,7 +119,7 @@ void __fastcall TForm1::UNZIPClick(TObject *Sender)
 void __fastcall TForm1::ZIPClick(TObject *Sender)
 {
 	File = AnsiString(PATH->Text).c_str();
-	Path = File.parent_path().u8string();
+	Path = filesystem::path(File).parent_path().u8string();
 	zipPath = filesystem::current_path().u8string();
 	unzipDOCX();
 	Path = Path + "\\temp";
@@ -134,10 +134,9 @@ void __fastcall TForm1::ZIPClick(TObject *Sender)
 			}
 		}
 	}
-	string FileName = "Shifred-" + File.filename().string();
 	system(("cd " + Path +
 			" && " + zipPath + "\\7z " + "a -tzip -mx5 -r0 " + string(&Path[0], &Path[Path.rfind("\\")]) +
-			"\\Shifred.zip * && cd .. && ren Shifred.zip " + FileName + " && rmdir temp /s /q").c_str());
+			"\\Shifred.zip * && cd .. && ren Shifred.zip Shifred.docx && rmdir temp /s /q").c_str());
 }
 //---------------------------------------------------------------------------
 
