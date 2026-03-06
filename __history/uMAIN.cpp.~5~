@@ -1,0 +1,117 @@
+//---------------------------------------------------------------------------
+
+#include <vcl.h>
+#pragma hdrstop
+using namespace std;
+
+#include "uMAIN.h"
+#include <filesystem>
+#include <fstream>
+
+//---------------------------------------------------------------------------
+#pragma package(smart_init)
+#pragma resource "*.dfm"
+TForm1 *Form1;
+string File;
+string Path;
+
+void unzipDOCX(string file) {
+	system(("cd " + Path + " && mkdir temp && cd temp && tar -xf " + File).c_str());
+}
+
+string Cesar(string s, int Step) {
+	for (int i = 0; i < s.length(); i++) {
+		s[i] += Step;
+	}
+	return s;
+}
+
+void Crypt_TXT_file(filesystem::path file) {
+	fstream f(file, ios::in);
+	string temp_file_path = file.parent_path().string() + "\\temp.txt";
+	fstream temp_file(temp_file_path, ios::out);
+	while (!f.eof()) {
+		string temp;
+		getline(f, temp);
+		temp_file << Cesar(temp, 1) << endl;
+	}
+	f.close();
+	temp_file.close();
+	system(("cd " + file.parent_path().string() +
+			" && del " + file.filename().string() +
+			" && ren temp.txt " + file.filename().string()).c_str());
+}
+
+void Decrypt_TXT_file(filesystem::path file) {
+	fstream f(file, ios::in);
+	string temp_file_path = file.parent_path().string() + "\\temp.txt";
+	fstream temp_file(temp_file_path, ios::out);
+	while (!f.eof()) {
+		string temp;
+		getline(f, temp);
+		temp_file << Cesar(temp, -1) << endl;
+	}
+	f.close();
+	temp_file.close();
+	system(("cd " + file.parent_path().string() +
+			" && del " + file.filename().string() +
+			" && ren temp.txt " + file.filename().string()).c_str());
+}
+
+//---------------------------------------------------------------------------
+__fastcall TForm1::TForm1(TComponent* Owner)
+	: TForm(Owner)
+{
+}
+//---------------------------------------------------------------------------
+void __fastcall TForm1::CHOOSEClick(TObject *Sender)
+{
+	if (OpenDialogDOCX->Execute()) {
+		PATH->Text = OpenDialogDOCX->FileName;
+	}
+}
+//---------------------------------------------------------------------------
+void __fastcall TForm1::UNZIPClick(TObject *Sender)
+{
+	File = AnsiString(PATH->Text).c_str();
+	Path = filesystem::path(File).parent_path().u8string();
+	unzipDOCX(File);
+	Path = Path + "\\temp";
+	for (filesystem::path file : filesystem::recursive_directory_iterator(Path)) {
+		if (filesystem::is_directory(file)) {} //Тут всё что нужнос делать с папками
+		if (filesystem::is_regular_file(file)) {
+			if (file.extension() != ".png") { //Обработчик txt файлов
+				Crypt_TXT_file(file);
+			}
+		}
+	}
+	system(("cd " + Path +
+			" && \"C:\\Program Files\\7-Zip\\7z\" a -tzip -mx5 -r0 C:\\Users\\SaMooTo\\Desktop\\Shifred.zip * && cd .. && ren Shifred.zip Shifred.docx && rmdir temp /s /q").c_str());
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::Button1Click(TObject *Sender)
+{
+	system("cd C:\\Users\\SaMooTo\\Desktop && rmdir temp /s /q");
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::ZIPClick(TObject *Sender)
+{
+    File = AnsiString(PATH->Text).c_str();
+	Path = filesystem::path(File).parent_path().u8string();
+	unzipDOCX(File);
+	Path = Path + "\\temp";
+	for (filesystem::path file : filesystem::recursive_directory_iterator(Path)) {
+		if (filesystem::is_directory(file)) {} //Тут всё что нужнос делать с папками
+		if (filesystem::is_regular_file(file)) {
+			if (file.extension() != ".png") { //Обработчик txt файлов
+				Decrypt_TXT_file(file);
+			}
+		}
+	}
+	system(("cd " + Path +
+			" && \"C:\\Program Files\\7-Zip\\7z\" a -tzip -mx5 -r0 C:\\Users\\SaMooTo\\Desktop\\Deshifred.zip * && cd .. && ren Deshifred.zip Deshifred.docx && rmdir temp /s /q").c_str());
+}
+//---------------------------------------------------------------------------
+
