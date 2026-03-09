@@ -53,23 +53,6 @@ object Form1: TForm1
       TabOrder = 3
       OnClick = ZIPClick
     end
-    object Edit1: TEdit
-      Left = 8
-      Top = 8
-      Width = 121
-      Height = 23
-      ReadOnly = True
-      TabOrder = 4
-    end
-    object keyGen: TButton
-      Left = 135
-      Top = 8
-      Width = 82
-      Height = 25
-      Caption = #1053#1086#1074#1099#1081' '#1082#1083#1102#1095
-      TabOrder = 5
-      OnClick = keyGenClick
-    end
   end
   object OpenDialogDOCX: TOpenDialog
     Left = 8

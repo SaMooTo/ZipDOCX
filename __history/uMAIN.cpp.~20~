@@ -145,11 +145,9 @@ void __fastcall TForm1::ZIPClick(TObject *Sender)
 
 void __fastcall TForm1::keyGenClick(TObject *Sender)
 {
-	uint32_t key[8];
+	randomize();
 	for (int i = 0; i < 8; i++) {
-        ra
-		key[i] = rand() % 255 + 1;
-		Form1->Caption += key[0];
+        random() % 255 + 1;
 	}
 }
 //---------------------------------------------------------------------------

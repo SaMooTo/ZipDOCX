@@ -5,13 +5,12 @@
 #include <filesystem>
 #include <stdio.h>
 #include "xtea3.cpp"
-#include <random>
 using namespace std;
 
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.dfm"
-#define SIZE_FILE 100*1024*1024
+#define SIZE_FILE 50*1024*1024
 
 TForm1 *Form1;
 string File;
@@ -27,7 +26,7 @@ void unzipDOCX(string file) {
 
 void CryptFile(filesystem::path file) {
 	xtea3 *ptr_xtea_lib = new xtea3;
-	uint32_t key[8] = {128, 129, 130, 131, 132, 133, 134, 135};
+	uint32_t key[8] = {0x11, 0x55, 0xAA, 0x88, 0x12, 0x55, 0x77, 0x12};
 
 	unsigned int count = 0;
 	unsigned int size_file = 0;
@@ -62,7 +61,7 @@ void CryptFile(filesystem::path file) {
 
 void DecryptFile(filesystem::path file) {
 	xtea3 *ptr_xtea_lib = new xtea3;
-	uint32_t key[8] = {128, 129, 130, 131, 132, 133, 134, 135};
+	uint32_t key[8] = {0x11, 0x55, 0xAA, 0x88, 0x12, 0x55, 0x77, 0x12};
 
 	unsigned int count = 0;
 	unsigned int size_file = 0;
@@ -138,19 +137,8 @@ void __fastcall TForm1::ZIPClick(TObject *Sender)
 		if (filesystem::is_regular_file(file)) CryptFile(file);
 	}
 	system(("cd " + Path +
-			" &&" + zipPath + "\\7z " + "a -tzip -mx5 -r0 " + string(&Path[0], &Path[Path.rfind("\\")]) +
+			" && pause &&" + zipPath + "\\7z " + "a -tzip -mx5 -r0 " + string(&Path[0], &Path[Path.rfind("\\")]) +
 			"\\Shifred.zip * && cd .. && ren Shifred.zip Shifred.docx && rmdir temp /s /q").c_str());
-}
-//---------------------------------------------------------------------------
-
-void __fastcall TForm1::keyGenClick(TObject *Sender)
-{
-	uint32_t key[8];
-	for (int i = 0; i < 8; i++) {
-        ra
-		key[i] = rand() % 255 + 1;
-		Form1->Caption += key[0];
-	}
 }
 //---------------------------------------------------------------------------
 
