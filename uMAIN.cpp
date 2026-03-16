@@ -1,12 +1,21 @@
 //---------------------------------------------------------------------------
 #pragma hdrstop
 #include <vcl.h>
+#include <System.Zip.hpp>
 #include "uMAIN.h"
 #include <filesystem>
 #include <stdio.h>
 #include "xtea3.cpp"
 #include <random>
 using namespace std;
+
+//	TZipFile *zip = new TZipFile();
+//	zip->ZipDirectoryContents("C:\\Users\\Gustov\\Desktop\\Small.zip", "C:\\Users\\Gustov\\Desktop\\Small");
+//	zip->Close();
+//	zip->Free();
+//	zip->ExtractZipFile("C:\\Users\\Gustov\\Desktop\\Small.docx", "C:\\Users\\Gustov\\Desktop");
+//	zip->Close();
+//	zip->Free();
 
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
@@ -22,9 +31,11 @@ static uint8_t tmp;
 static uint8_t buffer[SIZE_FILE];
 uint32_t key[8];
 
-void unzipDOCX(string file) {
-	system(("cd " + Path + " && mkdir temp && " + zipPath + "\\7z x \"" + File + "\" -o" + Path + "\\temp").c_str());
-	Form1->Caption = Path.c_str();
+void unzipDOCX() {
+	TZipFile *zip = new TZipFile();
+	zip->ExtractZipFile(File.c_str(), (Path + "\\temp").c_str());
+	zip->Close();
+	zip->Free();
 }
 
 void CryptFile(filesystem::path file) {
@@ -120,7 +131,7 @@ void __fastcall TForm1::UNZIPClick(TObject *Sender)
 	}
 	File = AnsiString(PATH->Text).c_str();
 	Path = filesystem::path(File).parent_path().u8string();
-	unzipDOCX(File);
+	unzipDOCX();
 	Path = Path + "\\temp";
 	for (filesystem::path file : filesystem::recursive_directory_iterator(Path)) {
 		if (filesystem::is_directory(file)) {} //Тут всё что нужнос делать с папками
@@ -145,7 +156,7 @@ void __fastcall TForm1::ZIPClick(TObject *Sender)
 	}
 	File = AnsiString(PATH->Text).c_str();
 	Path = filesystem::path(File).parent_path().u8string();
-	unzipDOCX(File);
+	unzipDOCX();
 	Path = Path + "\\temp";
 	for (filesystem::path file : filesystem::recursive_directory_iterator(Path)) {
 		if (filesystem::is_directory(file)) {} //Тут всё что нужнос делать с папками
