@@ -2,9 +2,9 @@ object Form1: TForm1
   Left = 0
   Top = 0
   AutoSize = True
-  Caption = 'but'
-  ClientHeight = 441
-  ClientWidth = 625
+  Caption = 'ZipDOCX'
+  ClientHeight = 442
+  ClientWidth = 629
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -24,55 +24,93 @@ object Form1: TForm1
       Top = 191
       Width = 257
       Height = 23
+      TabStop = False
+      AutoSelect = False
       TabOrder = 0
+      TextHint = #1055#1091#1090#1100' '#1082' '#1092#1072#1081#1083#1091' (.docx, .doc)'
     end
     object UNZIP: TButton
       Left = 320
-      Top = 304
+      Top = 222
       Width = 105
       Height = 25
       Caption = #1056#1072#1089#1096#1080#1092#1088#1086#1074#1072#1090#1100
       TabOrder = 1
+      TabStop = False
       OnClick = UNZIPClick
     end
     object CHOOSE: TButton
-      Left = 456
+      Left = 431
       Top = 191
       Width = 75
       Height = 25
       Caption = #1042#1099#1073#1088#1072#1090#1100
       TabOrder = 2
+      TabStop = False
       OnClick = CHOOSEClick
     end
     object ZIP: TButton
       Left = 168
-      Top = 304
+      Top = 222
       Width = 105
       Height = 25
       Caption = #1047#1072#1096#1080#1092#1088#1086#1074#1072#1090#1100
       TabOrder = 3
+      TabStop = False
       OnClick = ZIPClick
     end
     object Edit1: TEdit
       Left = 8
       Top = 8
-      Width = 121
+      Width = 177
       Height = 23
-      ReadOnly = True
+      TabStop = False
       TabOrder = 4
+      TextHint = #1050#1083#1102#1095
     end
     object keyGen: TButton
-      Left = 135
-      Top = 8
+      Left = 8
+      Top = 37
       Width = 82
       Height = 25
       Caption = #1053#1086#1074#1099#1081' '#1082#1083#1102#1095
       TabOrder = 5
+      TabStop = False
       OnClick = keyGenClick
+    end
+    object saveKey: TButton
+      Left = 8
+      Top = 99
+      Width = 82
+      Height = 25
+      Caption = #1057#1086#1093#1088#1072#1085#1080#1090#1100
+      TabOrder = 6
+      TabStop = False
+      OnClick = saveKeyClick
+    end
+    object loadKey: TButton
+      Left = 8
+      Top = 68
+      Width = 82
+      Height = 25
+      Caption = #1047#1072#1075#1088#1091#1079#1080#1090#1100
+      TabOrder = 7
+      TabStop = False
+      OnClick = loadKeyClick
     end
   end
   object OpenDialogDOCX: TOpenDialog
     Left = 8
     Top = 400
+  end
+  object keyOpenDialog: TOpenDialog
+    Left = 192
+    Top = 8
+  end
+  object keySaveDialog: TSaveDialog
+    DefaultExt = 'txt'
+    Filter = 'TXT files|*.txt|ALL files|*.*'
+    Left = 224
+    Top = 8
   end
 end

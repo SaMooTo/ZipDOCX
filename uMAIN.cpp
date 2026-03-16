@@ -16,18 +16,19 @@ using namespace std;
 TForm1 *Form1;
 string File;
 string Path;
-string zipPath;
+string zipPath = filesystem::current_path().u8string();
 
 static uint8_t tmp;
 static uint8_t buffer[SIZE_FILE];
+uint32_t key[8];
 
 void unzipDOCX(string file) {
-	system(("cd " + Path + " && mkdir temp && cd temp && tar -xf " + File).c_str());
+	system(("cd " + Path + " && mkdir temp && " + zipPath + "\\7z x \"" + File + "\" -o" + Path + "\\temp").c_str());
+	Form1->Caption = Path.c_str();
 }
 
 void CryptFile(filesystem::path file) {
 	xtea3 *ptr_xtea_lib = new xtea3;
-	uint32_t key[8] = {128, 129, 130, 131, 132, 133, 134, 135};
 
 	unsigned int count = 0;
 	unsigned int size_file = 0;
@@ -62,7 +63,6 @@ void CryptFile(filesystem::path file) {
 
 void DecryptFile(filesystem::path file) {
 	xtea3 *ptr_xtea_lib = new xtea3;
-	uint32_t key[8] = {128, 129, 130, 131, 132, 133, 134, 135};
 
 	unsigned int count = 0;
 	unsigned int size_file = 0;
@@ -110,9 +110,16 @@ void __fastcall TForm1::CHOOSEClick(TObject *Sender)
 //---------------------------------------------------------------------------
 void __fastcall TForm1::UNZIPClick(TObject *Sender)
 {
+	if (PATH->Text == "") {
+		ShowMessage("Неправильный формат директории файла!");
+		return;
+	}
+	if (Edit1->Text == "") {
+		ShowMessage("Неправильный формат ключа!");
+		return;
+	}
 	File = AnsiString(PATH->Text).c_str();
 	Path = filesystem::path(File).parent_path().u8string();
-	zipPath = filesystem::current_path().u8string();
 	unzipDOCX(File);
 	Path = Path + "\\temp";
 	for (filesystem::path file : filesystem::recursive_directory_iterator(Path)) {
@@ -120,17 +127,24 @@ void __fastcall TForm1::UNZIPClick(TObject *Sender)
 		if (filesystem::is_regular_file(file)) DecryptFile(file);
 	}
 	system(("cd " + Path +
-			" && " + zipPath + "\\7z " + "a -tzip -mx5 -r0 " + string(&Path[0], &Path[Path.rfind("\\")]) +
-			"\\Deshifred.zip * && cd .. && ren Deshifred.zip Deshifred.docx && rmdir temp /s /q").c_str());
+			" && " + zipPath + "\\7z a -tzip -mx5 -r0 " + string(&Path[0], &Path[Path.rfind("\\")]) +
+			"\\Deshifred.zip * && cd .. && ren Deshifred.zip Deshifred-\"" + filesystem::path(File).filename().string() + "\"&& rmdir temp /s /q").c_str());
 }
 //---------------------------------------------------------------------------
 
 
 void __fastcall TForm1::ZIPClick(TObject *Sender)
 {
-    File = AnsiString(PATH->Text).c_str();
+    if (PATH->Text == "") {
+		ShowMessage("Неправильный формат директории файла!");
+		return;
+	}
+	if (Edit1->Text == "") {
+		ShowMessage("Неправильный формат ключа!");
+		return;
+	}
+	File = AnsiString(PATH->Text).c_str();
 	Path = filesystem::path(File).parent_path().u8string();
-	zipPath = filesystem::current_path().u8string();
 	unzipDOCX(File);
 	Path = Path + "\\temp";
 	for (filesystem::path file : filesystem::recursive_directory_iterator(Path)) {
@@ -138,18 +152,61 @@ void __fastcall TForm1::ZIPClick(TObject *Sender)
 		if (filesystem::is_regular_file(file)) CryptFile(file);
 	}
 	system(("cd " + Path +
-			" &&" + zipPath + "\\7z " + "a -tzip -mx5 -r0 " + string(&Path[0], &Path[Path.rfind("\\")]) +
-			"\\Shifred.zip * && cd .. && ren Shifred.zip Shifred.docx && rmdir temp /s /q").c_str());
+			" &&" + zipPath + "\\7z a -tzip -mx5 -r0 " + string(&Path[0], &Path[Path.rfind("\\")]) +
+			"\\Shifred.zip * && cd .. && ren Shifred.zip Shifred-\"" + filesystem::path(File).filename().string() + "\"&& rmdir temp /s /q").c_str());
 }
 //---------------------------------------------------------------------------
 
 void __fastcall TForm1::keyGenClick(TObject *Sender)
 {
-	uint32_t key[8];
+	srand(time(NULL));
+	Edit1->Text = "";
 	for (int i = 0; i < 8; i++) {
-        ra
-		key[i] = rand() % 255 + 1;
-		Form1->Caption += key[0];
+		int r = rand() % 255 + 1;
+		key[i] = r;
+		if (0 <= r && r <= 9) Edit1->Text += ("00" + to_string(r)).c_str();
+		else if (10 <= r && r <= 99) Edit1->Text += ("0" + to_string(r)).c_str();
+		else Edit1->Text += + to_string(r).c_str();
+	}
+}
+void __fastcall TForm1::saveKeyClick(TObject *Sender)
+{
+	if (Edit1->Text == "") {
+		ShowMessage("Неправильный формат ключа. Сгенерируй новый");
+		return;
+	}
+	if (keySaveDialog->Execute()) {
+		FILE *hFileSave = fopen(AnsiString(keySaveDialog->FileName).c_str(), "wb+");
+		fwrite(Edit1->Text.c_str(), 1, 48, hFileSave);
+		fclose(hFileSave);
+	}
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::loadKeyClick(TObject *Sender)
+{
+	if (keyOpenDialog->Execute()) {
+		FILE *hFileOpen = fopen(AnsiString(keyOpenDialog->FileName).c_str(), "rb");
+		char buffer[24];
+		for (int i = 0; i < 48; i++) {
+			char tmp = char(getc(hFileOpen));
+			Edit1->Text += tmp;
+			if (tmp == 0) continue;
+			buffer[i/2] = tmp;
+		}
+		fclose(hFileOpen);
+
+		bool conversionSuccess = true;
+		for (int i = 0; i < 8; ++i) {
+            char block[4] = {0};
+			strncpy(block, buffer + i * 3, 3);
+			char* endPtr;
+			key[i] = static_cast<uint32_t>(strtoul(block, &endPtr, 10));
+			if (endPtr == block) {
+                conversionSuccess = false;
+                break;
+            }
+		}
 	}
 }
 //---------------------------------------------------------------------------
